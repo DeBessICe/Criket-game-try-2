@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cricket</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #000; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; font-family: system-ui, sans-serif; color: #fff; }
+    canvas { display: block; }
+    .hud { position: fixed; pointer-events: none; text-shadow: 0 1px 4px #000; }
+    #score { top: calc(env(safe-area-inset-top) + 8px); left: 12px; font-size: 15px; font-weight: 600; }
+    #msg { top: 28%; width: 100%; text-align: center; font-size: 38px; font-weight: 800; }
+    #fb { top: 38%; width: 100%; text-align: center; font-size: 18px; }
+    #comm { top: calc(env(safe-area-inset-top) + 34px); left: 12px; font-size: 14px; font-style: italic; opacity: .9; }
+    #partner { top: 46%; width: 100%; text-align: center; font-size: 17px; }
+    #legend { bottom: calc(env(safe-area-inset-bottom) + 6px); right: 10px; font-size: 11px; opacity: .6; text-align: right; }
+    #vig { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 45%, #000 120%); opacity: 0; }
+    #joyBase { position: fixed; display: none; width: 120px; height: 120px; border-radius: 50%; border: 2px solid #fff6; pointer-events: none; }
+    #joyKnob { position: absolute; left: 40px; top: 40px; width: 40px; height: 40px; border-radius: 50%; background: #fff8; }
+    button { position: fixed; bottom: calc(env(safe-area-inset-bottom) + 30px); padding: 14px 18px; border-radius: 12px; border: 0; font-size: 16px; font-weight: 700; background: #fffd; color: #000; }
+    #retire { left: 14px; font-size: 12px; padding: 8px 10px; bottom: calc(env(safe-area-inset-bottom) + 90px); }
+    #info { top: calc(env(safe-area-inset-top) + 58px); left: 12px; font-size: 11px; opacity: .7; }
+    #menu { position: fixed; inset: 0; background: #0b1b10; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; font-size: 17px; z-index: 5; }
+    #menu select, #menu button.go { font-size: 17px; padding: 10px 14px; border-radius: 10px; }
+    #menu button.go { position: static; background: #ffd23f; }
+    #defend { right: 110px; } #leave { right: 14px; } #review { right: 14px; bottom: 40%; display: none; background: #ffd23f; }
+    #end { position: fixed; inset: 0; display: none; background: #000c; align-items: center; justify-content: center; text-align: center; font-size: 30px; font-weight: 800; padding: 24px; }
+  </style>
+</head>
+<body>
+  <div id="score" class="hud"></div><div id="comm" class="hud"></div>
+  <div id="msg" class="hud"></div><div id="fb" class="hud"></div><div id="partner" class="hud"></div>
+  <div id="legend" class="hud">↑ straight (long ↑ lofted) · ↗ cover · ↖ flick · → cut · ← pull · ↙ sweep · ↘ hook<br>Running: swipe ↑ go · ↓ turn back · circle = dive</div>
+  <div id="vig"></div>
+  <div id="joyBase"><div id="joyKnob"></div></div>
+  <button id="defend">Defend</button><button id="leave">Leave</button><button id="review">REVIEW</button>
+  <button id="retire">Retire</button><div id="info" class="hud"></div>
+  <div id="end"></div>
+  <div id="menu">
+    <div style="font-size:30px;font-weight:800">CRICKET</div>
+    <label>Team <select id="mTeam"><option value="0">Royals</option><option value="1">Titans</option><option value="2">Strikers</option></select></label>
+    <label>Batting position <select id="mPos"></select></label>
+    <label>Start as <select id="mRole"><option value="1">Striker</option><option value="0">Non-striker</option></select></label>
+    <label>Stadium <select id="mStad"><option value="0">Oval Park</option><option value="1">Dust Bowl</option><option value="2">Night Arena</option></select></label>
+    <button class="go" id="mGo">Play</button>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
